@@ -2,9 +2,22 @@
 
 ![alt t## Decoders
 
-Models take a sequence of words and output the next word.
+Models take a sequence of words and output the next ## Temperature
 
-**Examples:** GPT-4, Llama, Bloom, Cohere
+When ## Beam Search
+
+Beam search generates multiple candidate sequences in parallel, keeping only the top "beam width" sequences at each step. It then selects the most likely final sequence from them.
+
+## Hallucinationing, temperature is a hyperparameter that controls the "randomness" of word selection.
+
+- **Lower temperature** → distribution is sharper around the most likely words (more deterministic)
+- **Higher temperature** → distribution is more spread out, making the model less predictable
+
+With sampling enabled, increasing temperature makes the model deviate from greedy decoding.
+
+Temperature does not change the relative ranking of words, only how sharply probabilities are applied.
+
+## Beam Searchples:** GPT-4, Llama, Bloom, Cohere
 
 What these models do is they take a sequence of tokens and emit the next token in the sequence based on the probability of the vocabulary which they compute. A decoder produces only a single token at a time.
 
@@ -119,15 +132,89 @@ It can be used to extract some information which is not supposed to be exposed l
 
 When deploying models this is one of the most important things to think about.
 
-Prompt injection is a concern anytime an external entity is given the ability to contribute to the prompt. 
-## Domain-adaption
-adapting a model to enhance its performance outside of the domain/subject area it was trained on 
-![alt text](image-5.png)
- ## Non deterministic Decoding 
- decoding is the process of gnerationg text with an LLM 
- decoding happens iteratiely 
- At each step of decoding we use the distribution over vocabulary and select 1 word to emmit 
- The word is append to the input the decoding process continues
- grreedy decoding is picking the word that is with the highest probability and feed it back to the model 
- 
+Prompt injection is a concern anytime an external entity is given the ability to contribute to the prompt.
+
+## Domain Adaptation
+
+Adapting a model to enhance its performance on data from a domain (subject area) that differs from the domain it was originally trained on.
+
+## Non-deterministic Decoding
+
+Decoding is the process of generating text with an LLM.
+
+- Decoding happens iteratively
+- At each step, the model produces a probability distribution over the vocabulary and selects one word to emit
+- The selected word is appended to the input, and the process continues
+- **Greedy decoding** means always picking the word with the highest probability and feeding it back into the model
+
+## Temperature
+
+When decoding, temperature is a hyperparameter that controls the “randomness” of word selection.
+
+Lower temperature → distribution is sharper around the most likely words (more deterministic).
+
+Higher temperature → distribution is more spread out, making the model less predictable.
+
+With sampling enabled, increasing temperature makes the model deviate from greedy decoding.
+
+Temperature does not change the relative ranking of words, only how sharply probabilities are applied.
+
+## Beam Search
+
+Beam search generates multiple candidate sequences in parallel, keeping only the top “beam width” sequences at each step. It then selects the most likely final sequence from them.
+
+## Hallucination
+Hallucination refers to when a model generates content that is syntactically correct and fluent but factually incorrect, irrelevant, or entirely fabricated.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
