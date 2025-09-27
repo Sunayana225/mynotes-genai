@@ -164,8 +164,18 @@ Temperature does not change the relative ranking of words, only how sharply prob
 Beam search generates multiple candidate sequences in parallel, keeping only the top “beam width” sequences at each step. It then selects the most likely final sequence from them.
 
 ## Hallucination
+
 Hallucination refers to when a model generates content that is syntactically correct and fluent but factually incorrect, irrelevant, or entirely fabricated.
 
+- Generated text that is non-factual
+- LLMs are trying to generate text which matches human-generated text, whether or not it's true it needs to sound true
+- LLM-generated text is sometimes not factual and can be difficult to spot
+- No known method to eliminate hallucination
+- There are some methods that claim to reduce hallucinations, e.g., retrieval augmentation compared to zero-shot ones
+
+## Groundedness and Attributability
+
+**Grounded:** Generated text is grounded in a document if the document supports the text.
 
 
 
