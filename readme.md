@@ -120,4 +120,14 @@ It can be used to extract some information which is not supposed to be exposed l
 When deploying models this is one of the most important things to think about.
 
 Prompt injection is a concern anytime an external entity is given the ability to contribute to the prompt. 
+## Domain-adaption
+adapting a model to enhance its performance outside of the domain/subject area it was trained on 
+![alt text](image-5.png)
+ ## Non deterministic Decoding 
+ decoding is the process of gnerationg text with an LLM 
+ decoding happens iteratiely 
+ At each step of decoding we use the distribution over vocabulary and select 1 word to emmit 
+ The word is append to the input the decoding process continues
+ grreedy decoding is picking the word that is with the highest probability and feed it back to the model 
+ 
 
