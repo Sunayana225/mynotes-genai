@@ -7,3 +7,4 @@ Actual embeddings represent more properties than just two.
 These rows of coordinates are called vectors and represented as numbers. 
 # Semantic similarity 
 consine and dot product similarity can be used to compute numerical stability 
+Embedding
