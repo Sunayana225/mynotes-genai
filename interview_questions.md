@@ -357,11 +357,339 @@ Answer: Data contamination occurs when test data appears in training data, leadi
 103. How do you handle out-of-distribution inputs?
 Answer: Through confidence calibration, outlier detection, and fallback mechanisms.
 
-104. What is calibration in LLMs?
-Answer: Calibration ensures model confidence scores accurately reflect true probabilities.
+### 104. What is calibration in LLMs?
+**Answer:** Calibration ensures model confidence scores accurately reflect true probabilities.
 
 ### 105. How do you measure model uncertainty?
 **Answer:** Through ensemble methods, Monte Carlo dropout, and predictive entropy.
+
+### 106. What is continual learning in LLMs?
+**Answer:** Continual learning enables models to learn new information over time without catastrophic forgetting.
+
+### 107. How do you update LLMs with new information?
+**Answer:** Through fine-tuning, retrieval augmentation, and prompt-based methods.
+
+### 108. What are the scaling laws in LLMs?
+**Answer:** Scaling laws describe how model performance improves with increased compute, data, and parameters.
+
+### 109. What is Chinchilla scaling?
+**Answer:** Chinchilla scaling suggests optimal performance comes from scaling model size and training data proportionally.
+
+### 110. How do you choose the right model size?
+**Answer:** Based on task requirements, computational constraints, latency needs, and performance targets.
+
+### 111. What is mixture of experts?
+**Answer:** Mixture of Experts uses multiple specialized sub-networks (experts) with a routing mechanism to increase capacity efficiently.
+
+### 112. How does routing work in MoE models?
+**Answer:** Routing selects which experts process each token based on learned gating mechanisms.
+
+### 113. What are the challenges of MoE models?
+**Answer:** Load balancing, communication overhead, and training instability.
+
+### 114. How do you train multilingual LLMs?
+**Answer:** Using multilingual data, cross-lingual transfer, and language-specific adaptations.
+
+### 115. What is cross-lingual transfer?
+**Answer:** Cross-lingual transfer leverages knowledge from high-resource languages to improve performance on low-resource languages.
+
+### 116. How do you evaluate multilingual models?
+**Answer:** Using language-specific benchmarks, cross-lingual tasks, and fairness across languages.
+
+### 117. What is code generation in LLMs?
+**Answer:** Code generation involves producing programming code from natural language descriptions or partial code.
+
+### 118. How do you evaluate code generation models?
+**Answer:** Using pass@k metrics, functional correctness, and human evaluation.
+
+### 119. What are the challenges of code generation?
+**Answer:** Syntactic correctness, semantic understanding, and handling complex requirements.
+
+### 120. How do multimodal LLMs work?
+**Answer:** Multimodal LLMs process multiple modalities (text, images, audio) through separate encoders and fused representations.
+
+## Advanced Level (121-200)
+
+### 121. Explain the mathematical formulation of transformer attention.
+**Answer:** 
+```
+Attention(Q, K, V) = softmax(QK^T/√d_k + M)V
+```
+Where M is an optional mask matrix for causal attention or padding.
+
+### 122. How does rotary positional encoding (RoPE) work?
+**Answer:** RoPE encodes position information by rotating query and key vectors using rotation matrices that depend on absolute position.
+
+### 123. What is ALiBi and how does it work?
+**Answer:** ALiBi (Attention with Linear Biases) adds a linear bias to attention scores based on token distance, enabling extrapolation to longer sequences.
+
+### 124. How do you mathematically formulate the transformer forward pass?
+**Answer:** For each layer:
+```
+Z = LayerNorm(X + Attention(XW_Q, XW_K, XW_V))
+Output = LayerNorm(Z + FFN(Z))
+```
+
+### 125. What is the gradient flow in transformers?
+**Answer:** Gradients flow through residual connections, enabling stable training of deep networks by mitigating vanishing gradients.
+
+### 126. How do you compute the memory requirements for training LLMs?
+**Answer:** 
+```
+Memory = (model parameters * bytes/param) + (activations * batch_size * seq_len) + optimizer states
+```
+
+### 127. What is the ZeRO optimizer?
+**Answer:** ZeRO (Zero Redundancy Optimizer) partitions optimizer states, gradients, and parameters across devices to reduce memory usage.
+
+### 128. How does pipeline parallelism work?
+**Answer:** Pipeline parallelism splits model layers across devices and processes micro-batches in a pipelined fashion.
+
+### 129. What is tensor parallelism?
+**Answer:** Tensor parallelism splits individual operations (like matrix multiplications) across multiple devices.
+
+### 130. How do you optimize transformer inference?
+**Answer:** Through operator fusion, kernel optimization, quantization, sparsity exploitation, and hardware-specific optimizations.
+
+### 131. What is activation checkpointing?
+**Answer:** Activation checkpointing trades compute for memory by recomputing activations during backward pass instead of storing them.
+
+### 132. How does dynamic programming work in beam search?
+**Answer:** Beam search maintains k best partial sequences at each step using dynamic programming to efficiently explore the search space.
+
+### 133. What is the Viterbi algorithm in sequence generation?
+**Answer:** The Viterbi algorithm finds the most likely sequence in HMMs, similar to beam search with beam size 1.
+
+### 134. How do you formulate the training objective for causal LM?
+**Answer:**
+```
+L = -Σ log P(x_t | x_<t)
+```
+Maximizing the likelihood of each token given previous tokens.
+
+### 135. What is the connection between perplexity and cross-entropy?
+**Answer:** Perplexity = exp(cross-entropy), where cross-entropy is the average negative log-likelihood.
+
+### 136. How do you compute BLEU score mathematically?
+**Answer:** 
+```
+BLEU = BP * exp(Σ w_n log p_n)
+```
+Where BP is brevity penalty and p_n are n-gram precisions.
+
+### 137. What is the mathematical formulation of RLHF?
+**Answer:** RLHF optimizes:
+```
+max E[log π(y|x) - β KL(π || π_ref)] + γ E[r(x,y)]
+```
+Where π is the policy, π_ref is the reference, and r is the reward.
+
+### 138. How does DPO work mathematically?
+**Answer:** DPO optimizes:
+```
+L_DPO = -E[log σ(β log(π(y_w|x)/π_ref(y_w|x) - β log(π(y_l|x)/π_ref(y_l|x)))]
+```
+Where y_w is preferred, y_l is dispreferred.
+
+### 139. What is the theory behind LoRA?
+**Answer:** LoRA assumes weight updates have low intrinsic rank: ΔW = BA, where B and A are low-rank matrices.
+
+### 140. How does quantization error affect model performance?
+**Answer:** Quantization introduces error ε = W - Q(W), which propagates through layers and accumulates, affecting output quality.
+
+### 141. What is the information bottleneck in transformers?
+**Answer:** The information bottleneck principle suggests layers learn to compress irrelevant information while preserving relevant features.
+
+### 142. How do you analyze attention patterns?
+**Answer:** Through attention visualization, entropy analysis, and pattern clustering to understand what models attend to.
+
+### 143. What is mechanistic interpretability?
+**Answer:** Mechanistic interpretability reverse-engineers neural networks to understand their internal algorithms and representations.
+
+### 144. How do you find circuits in transformers?
+**Answer:** Through activation patching, path integration, and causal tracing to identify important components for specific tasks.
+
+### 145. What is grokking in LLMs?
+**Answer:** Grokking occurs when models generalize long after overfitting training data, suggesting internal algorithm development.
+
+### 146. How do you measure representational similarity?
+**Answer:** Using CCA, SVCCA, and centered kernel alignment to compare representations across models or layers.
+
+### 147. What is the manifold hypothesis in LLMs?
+**Answer:** The manifold hypothesis suggests high-dimensional data lies near lower-dimensional manifolds, which LLMs learn to model.
+
+### 148. How do you formalize in-context learning?
+**Answer:** In-context learning can be viewed as implicit Bayesian inference or gradient descent in function space.
+
+### 149. What is the connection between attention and gradient descent?
+**Answer:** Self-attention can be interpreted as performing gradient descent on a similarity metric in the embedding space.
+
+### 150. How do you prove transformer universality?
+**Answer:** Through construction proofs showing transformers can approximate any sequence-to-sequence function given sufficient capacity.
+
+### 151. What are the computational complexity bounds of transformers?
+**Answer:** Self-attention is O(n²d) in sequence length, while feed-forward is O(nd²) in model dimension.
+
+### 152. How do sparse attention mechanisms work?
+**Answer:** Sparse attention restricts attention to subsets of tokens using patterns like sliding windows, striding, or learned sparsity.
+
+### 153. What is linear attention?
+**Answer:** Linear attention reformulates attention using kernel methods to achieve O(n) complexity.
+
+### 154. How do you implement efficient attention?
+**Answer:** Through kernel fusion, memory hierarchy optimization, and algorithm reformulation like flash attention.
+
+### 155. What is the theory behind positional encoding?
+**Answer:** Positional encoding provides a unique representation for each position that the model can use to learn relative and absolute positions.
+
+### 156. How do relative positional encodings work?
+**Answer:** Relative encodings incorporate position information through biases or transformations based on relative distances between tokens.
+
+### 157. What is the connection between transformers and graph neural networks?
+**Answer:** Transformers can be viewed as GNNs on fully-connected graphs, with attention weights as edge messages.
+
+### 158. How do you formalize retrieval in RAG mathematically?
+**Answer:** Retrieval finds documents d that maximize P(d|q) ∝ sim(E(q), E(d)), where E are embeddings and sim is similarity.
+
+### 159. What is the mathematical formulation of contrastive learning?
+**Answer:** Contrastive learning maximizes similarity for positive pairs and minimizes for negative pairs:
+```
+L = -log exp(sim(q,k+))/Σ exp(sim(q,k))
+```
+
+### 160. How do you optimize retrieval for RAG?
+**Answer:** Through embedding quality, indexing efficiency, retrieval recall, and reranking precision.
+
+### 161. What is maximum inner product search?
+**Answer:** MIPS finds vectors with highest dot product to query, equivalent to cosine similarity for normalized vectors.
+
+### 162. How do approximate nearest neighbor algorithms work?
+**Answer:** ANN algorithms use hashing, graph traversal, or quantization to efficiently find approximate neighbors.
+
+### 163. What is the theory behind vector quantization?
+**Answer:** Vector quantization partitions space into cells and represents vectors by their closest centroid.
+
+### 164. How do product quantization methods work?
+**Answer:** Product quantization splits vectors into subvectors and quantizes each separately, then combines results.
+
+### 165. What is the connection between RAG and latent variable models?
+**Answer:** RAG can be viewed as a latent variable model where documents are latent variables that generate answers.
+
+### 166. How do you train retriever-generator models jointly?
+**Answer:** Through gradient approximation, REINFORCE, or differentiable retrieval mechanisms.
+
+### 167. What is the mathematical formulation of DPO?
+**Answer:**
+```
+L_DPO = -E[log σ(β log π_θ(y_w|x) - β log π_ref(y_w|x) - β log π_θ(y_l|x) + β log π_ref(y_l|x))]
+```
+
+### 168. How does reinforcement learning connect to control theory?
+**Answer:** RL can be viewed as optimal control in Markov decision processes, with policies as controllers.
+
+### 169. What is the policy gradient theorem?
+**Answer:** 
+```
+∇J(θ) = E[∇log π(a|s) Q(s,a)]
+```
+Providing the gradient of expected reward with respect to policy parameters.
+
+### 170. How do you derive the PPO objective?
+**Answer:** PPO maximizes a clipped surrogate objective to ensure stable policy updates:
+```
+L = E[min(r(θ)A, clip(r(θ), 1-ε, 1+ε)A)]
+```
+Where r(θ) = π_θ/π_old.
+
+### 171. What is the connection between RLHF and inverse reinforcement learning?
+**Answer:** RLHF can be viewed as IRL where human preferences reveal the reward function.
+
+### 172. How do you analyze the optimization landscape of LLMs?
+**Answer:** Through loss surface visualization, gradient noise analysis, and Hessian spectrum analysis.
+
+### 173. What is neural tangent kernel theory?
+**Answer:** NTK theory analyzes infinite-width networks where training dynamics become linear and predictable.
+
+### 174. How does the lottery ticket hypothesis apply to LLMs?
+**Answer:** The hypothesis suggests sub-networks exist that can match full network performance when trained in isolation.
+
+### 175. What is mechanistic transfer learning?
+**Answer:** Mechanistic transfer studies how learned algorithms transfer across tasks and domains.
+
+### 176. How do you formalize emergence in LLMs?
+**Answer:** Emergence describes abilities that appear only at scale, not in smaller models, often following power laws.
+
+### 177. What is the scaling hypothesis?
+**Answer:** The scaling hypothesis predicts model performance improves predictably with compute, data, and parameters.
+
+### 178. How do you derive Chinchilla scaling laws?
+**Answer:** Chinchilla laws find optimal model size N and training tokens D satisfy N ∝ D, unlike previous N ∝ D^0.74.
+
+### 179. What is the compute-optimal frontier?
+**Answer:** The compute-optimal frontier describes the Pareto-optimal trade-off between model size and training data for fixed compute.
+
+### 180. How do mixture of experts scale?
+**Answer:** MoE scales model capacity without proportional compute increase by activating only subsets of parameters.
+
+### 181. What is the load balancing problem in MoE?
+**Answer:** Load balancing ensures experts receive roughly equal numbers of tokens to avoid underutilization.
+
+### 182. How do you implement expert choice routing?
+**Answer:** Expert choice lets experts select their top-k tokens rather than tokens selecting experts, improving load balance.
+
+### 183. What is the theory behind routing algorithms?
+**Answer:** Routing can be formulated as an assignment problem optimizing for expert utilization and token-expert affinity.
+
+### 184. How do you analyze the expressivity of transformer variants?
+**Answer:** Through formal language recognition, algorithmic task performance, and universal approximation proofs.
+
+### 185. What is the connection between transformers and Turing machines?
+**Answer:** Transformers with sufficient depth and width can simulate Turing machines, making them Turing-complete.
+
+### 186. How do you prove Turing completeness of transformers?
+**Answer:** By constructing transformer layers that implement tape operations and state transitions of Turing machines.
+
+### 187. What are the limitations of transformer expressivity?
+**Answer:** Transformers struggle with tasks requiring unbounded memory, precise counting, or complex reasoning steps.
+
+### 188. How do you augment transformers with external memory?
+**Answer:** Through differentiable memory mechanisms, attention to external stores, and read-write operations.
+
+### 189. What is the theory behind in-context learning?
+**Answer:** ICL may work because transformers learn to implement gradient descent or Bayesian inference in their forward pass.
+
+### 190. How do you formalize chain-of-thought reasoning?
+**Answer:** CoT can be viewed as the model generating a reasoning trace that serves as intermediate computation.
+
+### 191. What is the connection between reasoning and search?
+**Answer:** Reasoning can be implemented as search over a space of thoughts, with the model guiding the search.
+
+### 192. How do you implement tree search in LLMs?
+**Answer:** Through thought decomposition, evaluation functions, and backtracking mechanisms.
+
+### 193. What is the theory behind program-aided language models?
+**Answer:** PAL uses LLMs to generate programs that are executed by interpreters, separating reasoning from computation.
+
+### 194. How do you analyze the sample complexity of LLM learning?
+**Answer:** Through VC dimension, Rademacher complexity, or compression-based bounds adapted to transformers.
+
+### 195. What is the connection between generalization and robustness?
+**Answer:** Models that generalize well typically exhibit robustness to distribution shifts and adversarial examples.
+
+### 196. How do you formalize out-of-distribution detection?
+**Answer:** OOD detection identifies inputs far from training distribution using likelihood, distance, or uncertainty metrics.
+
+### 197. What is the open-world learning problem?
+**Answer:** Open-world learning handles new categories and concepts not seen during training.
+
+### 198. How do you implement continual learning in transformers?
+**Answer:** Through experience replay, elastic weight consolidation, and progressive networks.
+
+### 199. What is the theory behind meta-learning?
+**Answer:** Meta-learning learns learning algorithms that can quickly adapt to new tasks with few examples.
+
+### 200. How do you connect LLMs to AGI development?
+**Answer:** LLMs represent significant progress toward AGI through scaling, reasoning emergence, and multimodal integration, but fundamental gaps remain in planning, causality, and world understanding.
 
 ---
 
@@ -442,7 +770,3 @@ Positional Encoding: PE(pos,2i) = sin(pos/10000^(2i/d_model))
 - Not understanding the difference between training and inference
 - Mixing up encoder vs decoder architectures
 - Forgetting about computational complexity and scaling issues
-
----
-
-*This document contains 105+ essential LLM interview questions covering basic to advanced topics. Review regularly and practice explaining concepts in your own words for best interview preparation.*
