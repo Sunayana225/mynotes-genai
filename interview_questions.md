@@ -769,4 +769,4 @@ Positional Encoding: PE(pos,2i) = sin(pos/10000^(2i/d_model))
 - Confusing different attention types
 - Not understanding the difference between training and inference
 - Mixing up encoder vs decoder architectures   
-- Forgetting about computational complexity and scaling issues             
+- Forgetting about computational complexity and scaling issues                     
